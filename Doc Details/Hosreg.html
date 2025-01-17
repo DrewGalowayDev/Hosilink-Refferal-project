@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Registration</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            position: static;
+        }
+ 
+        .container {
+            max-width: 600px;
+            margin: 30px auto;
+            background: linear-gradient(72deg, #597df1 40% , #a0afe2 90%,#1a397b 15%);
+            margin-top: 200px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input, select, button {
+            width: 80%;
+            padding: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background: #454444;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+        }
+
+        button:hover {
+            background: #184e3f;
+        }
+
+        .departments, .services {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .departments h3, .services h3 {
+            margin-bottom: 10px;
+            color: #131414;
+            width: 60%;
+        }
+
+        .services ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        /* Media Query for Mobile Responsiveness */
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+                margin: 20px 10px;
+                width: 100%;
+                margin-top: 50px;
+            }
+
+            input, select, button {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="fixed-header">
+        <div class="ourwork_icon_container">
+            <img class="ourwork_html_icon" src="" alt="html icon" />
+            <div>
+                <h1 style="color: cyan;">HOSILINK</h1>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Hospital Registration</h1>
+        <br><br>
+    
+        <!-- Hospital Name -->
+        <label for="hospital-name">Hospital Name:</label>
+        <input type="text" id="hospital-name" placeholder="Enter Hospital Name" required>
+    
+        <!-- Hospital Location -->
+        <label for="hospital-location">Location:</label>
+        <input type="text" id="hospital-location" placeholder="Enter Hospital Location" required>
+    
+        <!-- Hospital Level -->
+        <label for="hospital-level">Hospital Level:</label>
+        <select id="hospital-level" required>
+            <option value="" disabled selected>Select Hospital Level</option>
+            <option value="level-2">Level 2</option>
+            <option value="level-3">Level 3</option>
+            <option value="level-4">Level 4</option>
+            <option value="level-5">Level 5</option>
+        </select>
+    
+        <!-- Departments -->
+        <div class="departments" style="display: none;">
+            <h3>Select a Department:</h3>
+            <select id="department" required>
+                <option value="" disabled selected>Select a Department</option>
+            </select>
+        </div>
+    
+        <!-- Services -->
+        <div class="services" style="display: none;">
+            <h3>Add Services to the Selected Department:</h3>
+            <input type="text" id="service-name" placeholder="Enter Service Name">
+            <button type="button" onclick="addService()">Add Service</button>
+            <ul id="services-list"></ul>
+        </div>
+    
+        <!-- Submit Button -->
+        <button type="button" onclick="submitForm()">Submit</button>
+    </div>
+    
+    <script>
+        // DOM Elements
+        const hospitalLevel = document.getElementById('hospital-level');
+        const departmentSelect = document.getElementById('department');
+        const servicesList = document.getElementById('services-list');
+        const departmentsDiv = document.querySelector('.departments');
+        const servicesDiv = document.querySelector('.services');
+    
+        // Services Data Structure
+        const services = {};
+    
+        // Departments by Hospital Level
+        const departmentsByLevel = {
+            "level-2": ["Radiology", "Outpatient"],
+            "level-3": ["Radiology", "Surgery", "Pharmacy"],
+            "level-4": ["Radiology", "Surgery", "Pharmacy", "ICU"],
+            "level-5": ["Radiology", "Surgery", "Pharmacy", "ICU", "Oncology"]
+        };
+    
+        // Populate Departments Based on Hospital Level
+        hospitalLevel.addEventListener('change', function () {
+            const level = this.value;
+            departmentSelect.innerHTML = '<option value="" disabled selected>Select a Department</option>';
+    
+            if (level && departmentsByLevel[level]) {
+                departmentsByLevel[level].forEach(department => {
+                    const option = document.createElement('option');
+                    option.value = department;
+                    option.textContent = department;
+                    departmentSelect.appendChild(option);
+                });
+    
+                departmentsDiv.style.display = 'block'; // Show departments dropdown
+                servicesDiv.style.display = 'none'; // Hide services initially
+            } else {
+                departmentsDiv.style.display = 'none'; // Hide departments if no level is selected
+            }
+        });
+    
+        // Display Service Input for the Selected Department
+        departmentSelect.addEventListener('change', function () {
+            const department = this.value;
+            services[department] = services[department] || [];
+            servicesList.innerHTML = ''; // Clear previous services
+            services[department].forEach(service => {
+                const li = document.createElement('li');
+                li.textContent = service;
+                servicesList.appendChild(li);
+            });
+    
+            servicesDiv.style.display = 'block'; // Show services section
+        });
+    
+        // Add Service to the Selected Department
+        function addService() {
+            const department = departmentSelect.value;
+            const serviceName = document.getElementById('service-name').value.trim();
+    
+            if (!serviceName) {
+                alert('Service name cannot be empty!');
+                return;
+            }
+    
+            if (services[department].includes(serviceName)) {
+                alert('Service already added!');
+                return;
+            }
+    
+            services[department].push(serviceName);
+            const li = document.createElement('li');
+            li.textContent = serviceName;
+            servicesList.appendChild(li);
+            document.getElementById('service-name').value = ''; // Clear input field
+        }
+    
+        // Submit Form with Collected Data
+        function submitForm() {
+            const hospitalName = document.getElementById('hospital-name').value;
+            const hospitalLocation = document.getElementById('hospital-location').value;
+            const level = hospitalLevel.value;
+            const department = departmentSelect.value;
+    
+            if (!hospitalName || !hospitalLocation || !level || !department) {
+                alert('Please fill in all the fields.');
+                return;
+            }
+    
+            alert(`Hospital Registered Successfully!
+            Name: ${hospitalName}
+            Location: ${hospitalLocation}
+            Level: ${level}
+            Department: ${department}
+            Services: ${services[department].join(', ')}`);
+        }
+    </script>
+    
+</body>
+</html>

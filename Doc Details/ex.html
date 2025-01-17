@@ -1,0 +1,82 @@
+ <!-- Sidebar Start -->
+ <div class="sidebar pe-4 pb-3">
+    <nav class="navbar bg-light navbar-light">
+        <a href="index.html" class="navbar-brand mx-4 mb-3">
+            <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>HOSILINK</h3>
+        </a>
+        <div class="d-flex align-items-center ms-4 mb-4">
+            <div class="position-relative">
+                <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+            </div>
+            <div class="ms-3">
+                <h6 class="mb-0">Dr. Drew Galloway</h6>
+                <span>Doctor</span>
+            </div>
+        </div>
+        <div class="navbar-nav w-100">
+            <a href="dashboard.html" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+            <a href="patient_referrals.html" class="nav-item nav-link"><i class="fa fa-hospital me-2"></i>Referral System</a>
+            <a href="update_profile.html" class="nav-item nav-link"><i class="fa fa-user-edit me-2"></i>Update Profile</a>
+            <a href="hospital_dashboard.html" class="nav-item nav-link"><i class="fa fa-building me-2"></i>Hospital Dashboard</a>
+            <a href="active_cases.html" class="nav-item nav-link"><i class="fa fa-clipboard-list me-2"></i>Active Cases</a>
+        </div>
+    </nav>
+</div>
+<!-- Sidebar End -->
+
+<!-- Main Content Start -->
+<div class="content">
+    <div class="container-fluid pt-4 px-4">
+        <!-- Doctor's Dashboard Main Area -->
+        <div class="row g-4">
+            <div class="col-12">
+                <h4 class="mb-4">Doctor Dashboard</h4>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Profile</h5>
+                        <p class="card-text">Dr. Drew Galloway - Cardiology</p>
+                        <a href="update_profile.html" class="btn btn-primary">Edit Profile</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Referral Patients</h5>
+                        <ul>
+                            <li><strong>John Doe</strong> - Referred to <em>Hospital XYZ</em></li>
+                            <li><strong>Jane Smith</strong> - Referred to <em>Hospital ABC</em></li>
+                        </ul>
+                        <a href="patient_referrals.html" class="btn btn-secondary">Manage Referrals</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Active Cases</h5>
+                        <ul>
+                            <li><strong>Patient ID: 001</strong> - Status: <span class="badge bg-success">Stable</span></li>
+                            <li><strong>Patient ID: 002</strong> - Status: <span class="badge bg-warning">Critical</span></li>
+                        </ul>
+                        <a href="active_cases.html" class="btn btn-danger">View Active Cases</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Main Content End -->
+</div>
+
+<!-- Script Files -->
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="lib/tempusdominus/js/moment.min.js"></script>
+<script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+
+</html>
+

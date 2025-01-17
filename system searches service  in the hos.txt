@@ -1,0 +1,12 @@
+system searches service  in the host hospital -- refers him to another hospital === if not available --
+if option available =l ----select option to brings the client referral form==tracking slip where details are feed in by the reffered hospital===bring the option to bring the form to refferalmanager for approval
+referral manager dashboard
+-new referral
+-pending
+-approved
+=home dashboard
+after reviewing the form and approving,,he assigns the form to the doctor in the   department service(alert comes  back to the doctor to notify him that the form is already approved using the patient code either inpatient or outpatient number
+
+--=after receptiornist generating the code,,it goes to teh doctor and the doc decides whether the patient is inpatient or outpatient,,,after diagnosis,the  oc fills in the form   either Ip or OP depending on the diagnosis
+
+when the form goes to the referral manager, the system generates an OTP code upon approval of the referral,, this OTP Code is send back to  the doctor,,, the doctor gives the patient OP or IP NO with the OTP CODE,
